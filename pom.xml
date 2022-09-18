@@ -10,6 +10,13 @@
     <packaging>war</packaging>
 
     <properties>
+        <sun.jaxws.version>2.2.8</sun.jaxws.version>
+        <metro.jaxws.version>2.3</metro.jaxws.version>
+        <jaxws.scope>compile</jaxws.scope> <!-- provided(weblogic) / compile(tomcat) -->
+        <compileSource>1.7</compileSource>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <tomcat.version>8.0.48</tomcat.version>
@@ -59,6 +66,22 @@
             <artifactId>jersey-client</artifactId>
             <version>2.25.1</version>
         </dependency>
+
+        <!-- jax-ws runtime from sun -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>${sun.jaxws.version}</version>
+            <scope>${jaxws.scope}</scope>
+        </dependency>
+
+        <!-- jax-ws runtime from glassfish Metro - project tango -->
+        <dependency>
+            <groupId>org.glassfish.metro</groupId>
+            <artifactId>webservices-rt</artifactId>
+            <version>${metro.jaxws.version}</version>
+            <scope>${jaxws.scope}</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -81,6 +104,30 @@
                 <version>3.3.2</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <id>basic</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <keep>true</keep>
+                    <sei>com.jaxws.series.bottom.up.approach.service.BookServiceImpl</sei>
+                    <genWsdl>true</genWsdl>
+                    <resourceDestDir>${basedir}\generated\resources\wsdl</resourceDestDir>
+                    <sourceDestDir>${basedir}\generated\java\source</sourceDestDir>
+                    <verbose>true</verbose>
+                    <target>2.1</target>
                 </configuration>
             </plugin>
         </plugins>
