@@ -10,15 +10,12 @@
     <packaging>war</packaging>
 
     <properties>
-        <sun.jaxws.version>2.2.8</sun.jaxws.version>
+        <sun.jaxws.version>4.0.0</sun.jaxws.version>
         <metro.jaxws.version>2.3</metro.jaxws.version>
-        <jaxws.scope>compile</jaxws.scope> <!-- provided(weblogic) / compile(tomcat) -->
-        <compileSource>1.7</compileSource>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <jaxws.scope>compile</jaxws.scope>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <tomcat.version>8.0.48</tomcat.version>
     </properties>
 
@@ -72,14 +69,6 @@
             <groupId>com.sun.xml.ws</groupId>
             <artifactId>jaxws-rt</artifactId>
             <version>${sun.jaxws.version}</version>
-            <scope>${jaxws.scope}</scope>
-        </dependency>
-
-        <!-- jax-ws runtime from glassfish Metro - project tango -->
-        <dependency>
-            <groupId>org.glassfish.metro</groupId>
-            <artifactId>webservices-rt</artifactId>
-            <version>${metro.jaxws.version}</version>
             <scope>${jaxws.scope}</scope>
         </dependency>
     </dependencies>
