@@ -29,7 +29,7 @@ public class JavaEePracticeApplication {
         tomcat.addServlet(contextPath, servletName, servlet);
         context.addServletMappingDecoded(urlPattern, servletName);
 
-        Endpoint.publish("http://localhost:8081/random", new RandomApiServiceImpl());
+        Endpoint.publish("http://localhost:8088/random", new RandomApiServiceImpl());
 
         tomcat.start();
         tomcat.getServer().await();

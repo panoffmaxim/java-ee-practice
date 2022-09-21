@@ -7,6 +7,10 @@ public class RandomApiModel {
     private String service;
     private String randomFact;
 
+    public RandomApiModel() {
+
+    }
+
     public RandomApiModel(String service, String randomFact) {
         this.service = service;
         this.randomFact = randomFact;
